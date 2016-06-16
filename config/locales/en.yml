@@ -28,3 +28,8 @@ en:
   home: "Home"
   login: "Log in"
   signupnow: "Sign up now"
+  signup: "Sign up"
+  success: "Success!"
+  error: "Error"
+  confimation: "Confimation"
+  createaccount: "Create my account"
