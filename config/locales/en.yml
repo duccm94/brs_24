@@ -21,3 +21,10 @@
 
 en:
   hello: "Hello world"
+  project_name: "Book Reviewing System"
+  help: "Help"
+  about: "About"
+  contact: "Contact"
+  home: "Home"
+  login: "Log in"
+  signupnow: "Sign up now"
