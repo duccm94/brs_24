@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20160616040117) do
     t.float    "rating"
     t.string   "author"
     t.integer  "number_pages"
+    t.string   "picture"
     t.integer  "category_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
