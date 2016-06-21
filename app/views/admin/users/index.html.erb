@@ -1,0 +1,11 @@
+<% provide :title, t("allusers") %>
+<h1><%= t :allusers %></h1>
+<div class="row">
+  <% @users.each do |user| %>
+    <li>
+      <%= link_to user.name, user %>
+      <%= link_to t(:delete), [:admin, user], method: :delete, data: {confirm: t(:areyousure)} %>
+    </li>
+  <% end %>
+  <%= will_paginate %>
+</div>
