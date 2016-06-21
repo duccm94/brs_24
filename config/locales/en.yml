@@ -65,3 +65,6 @@ en:
   findfail: "User not found"
   allcategories: "All Categories"
   createcategory: "Create Category"
+  submit: "Submit"
+  addreview: "Add review"
+  timetype: "%d-%m-%y %H:%M"

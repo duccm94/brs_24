@@ -1,16 +1,22 @@
-<li id="book-<%= book.id %>">
-  <span class="title"><%= book.title %></span>
-  <span class="book-info">
-    <%= image_tag book.picture.url if book.picture? %>
-    <%= t :author %>
-    <%= book.author %>
-    <%= t :publish_date %>
-    <%= book.publish_date %>
-    <%= t :number_pages %>
-    <%= book.number_pages %>	
-  </span>
-  <span class="timestamp">
-    <%= t :posted %>
-    <%= time_ago_in_words book.created_at %>
-  </span>
-</li>
+<span class="title">
+  <%= link_to book.title, book %>
+</span>
+<span class="book-info">
+  <%= image_tag book.picture.url if book.picture? %>
+  <%= t :author %>
+  <%= book.author %>
+  <%= t :publish_date %>
+  <%= book.publish_date %>
+  <%= t :number_pages %>
+  <%= book.number_pages %>	
+</span>
+<span class="timestamp">
+  <%= t :posted %>
+  <%= time_ago_in_words book.created_at %>
+</span>
+<div id="reviews_<%= book.id %>">
+  <%= render book.reviews, book: book if book.reviews.any? %>
+</div>
+<div class="review">
+  <%= render "shared/review_form", book: book if logged_in? %>
+</div>

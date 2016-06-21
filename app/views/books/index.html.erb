@@ -3,6 +3,28 @@
 
 <%= will_paginate %>
 <ul class="books">
-  <%= render @books %>
+  <% @books.each do |book| %>
+    <li id="book-<%= book.id %>">
+      <span class="title">
+        <%= link_to book.title, book %>  
+      </span>
+      <span class="book-info">
+        <%= image_tag book.picture.url if book.picture? %>
+        <%= t :author %>
+        <%= book.author %>
+        <%= t :publish_date %>
+        <%= book.publish_date %>
+        <%= t :number_pages %>
+        <%= book.number_pages %>	
+      </span>
+      <span class="timestamp">
+        <%= t :posted %>
+        <%= time_ago_in_words book.created_at %>
+      </span>
+      <div>
+        <%= link_to t(:addreview), book if logged_in? %>
+      </div>
+    </li>
+  <% end %>
 </ul>
 <%= will_paginate %>
