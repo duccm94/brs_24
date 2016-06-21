@@ -68,3 +68,5 @@ en:
   submit: "Submit"
   addreview: "Add review"
   timetype: "%d-%m-%y %H:%M"
+  editcategory: "Edit Category"
+  categoryupdated: "Category updated"
