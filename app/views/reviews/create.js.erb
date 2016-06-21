@@ -1,0 +1,2 @@
+$("#reviews_<%= @book.id %>").append("<%= j render 'reviews/review', book: @book, review: @review %>");
+$("#review_content_<%= @book.id %>").val('')

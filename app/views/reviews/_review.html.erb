@@ -1,0 +1,19 @@
+<div class="row" id="review_<%review.id%>" >
+  <div class="col-md-1">
+    <span class="pull-right">
+      <%= link_to gravatar_for(review.user), review.user %>
+    </span>
+  </div>
+  <div class="col-md-9">
+    <div class="col-md-11">
+      <b><%= link_to review.user.name, review.user %></b>
+      <%= review.content %>
+      <br/>
+      <h6><%= review.created_at.strftime t(:timetype) %></h6>
+    </div>
+    <div class="col-md-1">
+      <%= link_to t(:delete), review, method: :delete,
+        remote: true if current_user? review.user %>
+    </div>
+  </div>
+</div>
