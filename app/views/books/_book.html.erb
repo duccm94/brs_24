@@ -1,0 +1,16 @@
+<li id="book-<%= book.id %>">
+  <span class="title"><%= book.title %></span>
+  <span class="book-info">
+    <%= image_tag book.picture.url if book.picture? %>
+    <%= t :author %>
+    <%= book.author %>
+    <%= t :publish_date %>
+    <%= book.publish_date %>
+    <%= t :number_pages %>
+    <%= book.number_pages %>	
+  </span>
+  <span class="timestamp">
+    <%= t :posted %>
+    <%= time_ago_in_words book.created_at %>
+  </span>
+</li>
