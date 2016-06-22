@@ -1,0 +1,15 @@
+<% provide :title, t("allbooks") %>
+<h1><%= t :allbooks %></h1>
+<div class="row">
+  <% @books.each do |book| %>
+    <li id="book-<%= book.id %>">
+      <%= book.title %>
+      <%= image_tag book.picture.url if book.picture? %>
+      <%= book.publish_date %>
+      <%= book.rating %>
+      <%= book.author %>
+      <%= book.number_pages %>
+    </li>
+  <% end %>
+  <%= will_paginate %>
+</div>

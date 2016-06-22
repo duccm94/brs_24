@@ -11,14 +11,15 @@ end
 
 50.times do |n|
   title = Faker::Book.title
-  publish_date = "publish_date"
-  rating = 7
+  publish_date = Faker::Date.backward(100)
+  rating = Faker::Number.between(1, 10)
   author = Faker::Book.author
-  number_pages = 100
-  category_id = 1
+  number_pages = Faker::Number.between(100, 500)
+  category_id = Faker::Number.between(1, 10)
+  picture = "book.png"
   Book.create! title: title, category_id: category_id,
     publish_date: publish_date, rating: rating, author: author,
-    number_pages: number_pages
+    number_pages: number_pages, picture: picture
 end
 
 20.times do |n|
