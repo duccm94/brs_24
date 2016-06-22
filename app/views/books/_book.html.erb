@@ -12,11 +12,18 @@
 </span>
 <span class="timestamp">
   <%= t :posted %>
-  <%= time_ago_in_words book.created_at %>
+  <%= book.created_at.strftime t(:timetype) %>
 </span>
-<div id="reviews_<%= book.id %>">
-  <%= render book.reviews, book: book if book.reviews.any? %>
-</div>
-<div class="review">
-  <%= render "shared/review_form", book: book if logged_in? %>
-</div>
+<% if logged_in? %>
+  <div id="review_count">
+    <%= book.reviews.count %>
+    <%= t :reviews %>
+  </div>
+  <div class="review">
+    <%= render "shared/review_form", book: book %>
+  </div>
+  <div id="reviews_<%= book.id %>">
+    <%= render @reviews, book: book if book.reviews.any? %>
+    <%= will_paginate @reviews %>
+  </div>
+<% end %>
