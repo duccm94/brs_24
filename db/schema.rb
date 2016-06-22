@@ -26,13 +26,13 @@ ActiveRecord::Schema.define(version: 20160616040117) do
   create_table "books", force: :cascade do |t|
     t.string   "title"
     t.date     "publish_date"
-    t.float    "rating"
+    t.integer  "rating",       default: 0
     t.string   "author"
     t.integer  "number_pages"
     t.string   "picture"
     t.integer  "category_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   add_index "books", ["category_id"], name: "index_books_on_category_id"

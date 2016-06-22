@@ -60,7 +60,7 @@ en:
   numberpages: "Number pages"
   posted: "Posted"
   picturesize: "should be less than 5MB"
-  allbook: "All Books"
+  allbooks: "All Books"
   userupdated: "User updated"
   findfail: "User not found"
   allcategories: "All Categories"
@@ -70,3 +70,4 @@ en:
   timetype: "%d-%m-%y %H:%M"
   editcategory: "Edit Category"
   categoryupdated: "Category updated"
+  createbook: "Create Book"

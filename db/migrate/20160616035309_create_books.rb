@@ -3,7 +3,7 @@ class CreateBooks < ActiveRecord::Migration
     create_table :books do |t|
       t.string :title
       t.date :publish_date
-      t.float :rating
+      t.integer :rating, default: 0
       t.string :author
       t.integer :number_pages
       t.string :picture
