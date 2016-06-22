@@ -1,0 +1,12 @@
+<%= form_for @comment, remote: true do |f| %>
+  <div class="row">
+    <div class="col-md-8">
+      <%= f.hidden_field :review_id, value: review.id %>
+      <%= f.text_area :content, rows: 3, placeholder: t(:addcomment), class: "form-control form-margin",
+        id: "comment_content_#{review.id}" %>
+    </div>
+    <div class="col-md-2">
+      <%= f.submit t(:submit), class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

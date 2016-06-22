@@ -1,11 +1,9 @@
-class ReviewsController < ApplicationController
+class CommentsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
   
   def create
-    @review = current_user.reviews.build review_params
-    @book = Book.find_by_id @review.book_id
-    @comment = Comment.new
-    if @review.save
+    @comment = current_user.comments.build comment_params
+    if @comment.save
       respond_to do |format|
         format.html {redirect_to root_url}
         format.js
@@ -17,9 +15,8 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @review = current_user.reviews.find_by_id params[:id]
-    @book = @review.book
-    @review.destroy
+    @comment = Comment.find_by_id params[:id]
+    @comment.destroy
     respond_to do |format|
       format.html {redirect_to root_url}
       format.js
@@ -27,7 +24,7 @@ class ReviewsController < ApplicationController
   end
 
   private
-  def review_params
-    params.require(:review).permit :content, :book_id
+  def comment_params
+    params.require(:comment).permit :content, :review_id
   end
 end

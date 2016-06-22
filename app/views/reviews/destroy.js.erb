@@ -1,1 +1,2 @@
-$("#reviews_<%= @book.id %>").html("<%= j render @book.reviews, book: @book, review: @review %>");
+$("#review_<%= @review.id %>").remove();
+$("#review_count").html("<%= @book.reviews.count %> <%= t :reviews %>");
