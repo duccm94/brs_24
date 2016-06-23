@@ -12,6 +12,9 @@ class Book < ActiveRecord::Base
     numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 10}
   validate  :picture_size
 
+  scope :category, -> category_id {where category_id: category_id}
+  scope :title, -> title {where("title like ?", "%#{title}%")}
+
   private
   def picture_size
     if picture.size > 5.megabytes
