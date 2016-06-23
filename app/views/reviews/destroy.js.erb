@@ -1,2 +1,3 @@
 $("#review_<%= @review.id %>").remove();
-$("#review_count").html("<%= @book.reviews.count %> <%= t :reviews %>");
+$("#review_count").html("<%= pluralize @book.reviews.count, t(:reviews) %>");
+$("#book_rating").html("<%= "#{t(:rating)} #{@book.rating}" %>");

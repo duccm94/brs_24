@@ -9,6 +9,7 @@
       <div class="col-md-11">
         <b><%= link_to review.user.name, review.user %></b>
         <%= review.content %>
+        <%= review.rate if review.rate.present? %>
         <br/>
         <h6><%= review.created_at.strftime t(:timetype) %></h6>
       </div>

@@ -1,3 +1,11 @@
-$("#review_count").html("<%= @book.reviews.count %> <%= t :reviews %>");
-$("#reviews_<%= @book.id %>").prepend("<%= j render 'reviews/review', book: @book, review: @review %>");
-$("#review_content_<%= @book.id %>").val('')
+<% if @review.save %>
+  $("#review_count").html("<%= pluralize @book.reviews.count, t(:reviews) %>");
+  $("#book_rating").html("<%= "#{t(:rating)} #{@book.rating}" %>");
+  $("#reviews_<%= @book.id %>").prepend("<%= j render "reviews/review",
+    book: @book, review: @review %>");
+  $("#review_content_<%= @book.id %>").val("");
+  $("#flash_error").html("<%= j render "shared/flash_error" %>");
+  $("#rate").val("");
+<% else %>
+  $("#flash_error").html("<%= j render "shared/flash_error" %>");
+<% end %>

@@ -14,16 +14,24 @@
   <%= t :posted %>
   <%= book.created_at.strftime t(:timetype) %>
 </span>
+<span class="book-rating" id="book_rating">
+  <% if book.rating > 0.0 %>
+    <%= t :rating %>
+    <%= book.rating %>
+  <% end %>
+</span>
 <% if logged_in? %>
   <div id="review_count">
     <%= book.reviews.count %>
     <%= t :reviews %>
   </div>
-  <div class="review">
+  <section class="review">
     <%= render "shared/review_form", book: book %>
-  </div>
+  </section>
   <div id="reviews_<%= book.id %>">
-    <%= render @reviews, book: book if book.reviews.any? %>
-    <%= will_paginate @reviews %>
+    <% if book.reviews.any? %>
+      <%= render @reviews, book: book %>
+      <%= will_paginate @reviews %>
+    <% end %>
   </div>
 <% end %>
