@@ -1,2 +1,8 @@
-<%= render "follow_form" if logged_in? %>
-<%= @user.name %>, <%= @user.email %>
+<% provide :title, @user.name %>
+<h1><%= @user.name %></h1>
+<% if logged_in? %>
+  <%= render "follow_form" %>
+<% end %>
+<%= pluralize @user.reviews.count, t("review") %>
+<%= pluralize @user.following.count, t("following") %>
+<%= pluralize @user.followers.count, t("followers") %>
