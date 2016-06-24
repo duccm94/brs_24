@@ -18,7 +18,7 @@
       <%= f.number_field :number_pages, class: "form-control" %>
 
       <%= f.label :category %>
-      <%= f.collection_select :category_id, Category.all, :id, :name %>
+      <%= f.collection_select :category, @categories, :id, :name %>
 
       <%= f.file_field :picture, accept: "image/jpeg, image/gif, image/png" %>
 
