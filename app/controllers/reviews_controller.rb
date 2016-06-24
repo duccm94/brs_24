@@ -6,13 +6,17 @@ class ReviewsController < ApplicationController
     @book = Book.find_by_id @review.book_id
     @comment = Comment.new
     if @review.save
+      make_rating @book if @review.rate.present?
       respond_to do |format|
         format.html {redirect_to root_url}
         format.js
       end
     else
-      flash[:alert] = t :error
-      redirect_to :back
+      flash.now[:danger] = @review.errors.full_messages
+      respond_to do |format|
+        format.html {redirect_to root_url}
+        format.js
+      end
     end
   end
 
@@ -20,6 +24,7 @@ class ReviewsController < ApplicationController
     @review = current_user.reviews.find_by_id params[:id]
     @book = @review.book
     @review.destroy
+    make_rating @book if @review.rate.present?
     respond_to do |format|
       format.html {redirect_to root_url}
       format.js
@@ -28,6 +33,11 @@ class ReviewsController < ApplicationController
 
   private
   def review_params
-    params.require(:review).permit :content, :book_id
+    params.require(:review).permit :content, :book_id, :rate
+  end
+
+  def make_rating book
+    rating = book.reviews.where.not(rate: nil).average(:rate)
+    book.update_attributes rating: rating
   end
 end
