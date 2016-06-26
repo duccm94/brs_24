@@ -1,0 +1,6 @@
+<% if @request.errors.any? %>
+  $("#flash_error").html("<%= j render "shared/flash_error" %>");
+<% else %>
+  $("#request_form").html("<%= j render "books/cancel",
+    book_id: @request.book_id %>");
+<% end %>

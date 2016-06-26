@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :reviews, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :requests, dependent: :destroy
   has_many :active_relationships, class_name: Relationship.name,
     foreign_key: "follower_id", dependent: :destroy
   has_many :passive_relationships, class_name: Relationship.name,
@@ -48,7 +49,7 @@ class User < ActiveRecord::Base
     update_attributes remember_digest: nil
   end
 
-  def follow other_user 
+  def follow other_user
     active_relationships.create followed_id: other_user.id
   end
 
@@ -58,5 +59,9 @@ class User < ActiveRecord::Base
 
   def following? other_user
     following.include? other_user
+  end
+
+  def request? book_id
+    requests.book(book_id).present?
   end
 end

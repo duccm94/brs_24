@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :logged_in_user, only: [:create, :destroy]
-  
+
   def create
     @review = current_user.reviews.build review_params
     @book = Book.find_by_id @review.book_id
