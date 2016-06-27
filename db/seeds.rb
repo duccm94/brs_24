@@ -22,7 +22,7 @@ end
     number_pages: number_pages, picture: picture
 end
 
-20.times do |n|
+10.times do |n|
   name = Faker::Book.genre
   Category.create! name: name
 end
