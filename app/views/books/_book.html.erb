@@ -4,6 +4,16 @@
     <%= render current_user.request?(book.id) ? "cancel" : "request",
       book_id: book.id %>
   </div>
+  <div id="activity_form">
+    <div id="favorite_form">
+      <%= render current_user.activity?(Settings.favorite_type, book.id) ?
+        "remove_favorite" : "add_favorite", target_id: book.id %>
+    </div>
+    <div id="read_form">
+      <%= render current_user.activity?(Settings.read_type, book.id) ?
+        "remove_readbook" : "add_readbook", target_id: book.id %>
+    </div>
+  </div>
   <div id="review_count">
     <%= book.reviews.count %>
     <%= t :reviews %>

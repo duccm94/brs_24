@@ -1,0 +1,6 @@
+<%= form_for current_user.activities.build, remote: true do |f| %>
+  <%= f.hidden_field :target_id, value: target_id %>
+  <%= f.hidden_field :action_type, value: t(:read) %>
+  <%= f.submit t(:add_readbook), class: "btn btn-primary" %>
+  <%= render "shared/error_messages", object: f.object %>
+<% end %>

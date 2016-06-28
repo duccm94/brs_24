@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
+  has_many :activities, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -63,5 +64,9 @@ class User < ActiveRecord::Base
 
   def request? book_id
     requests.book(book_id).present?
+  end
+
+  def activity? action_type, book_id
+    activities.where(action_type: action_type, target_id: book_id).present?
   end
 end
