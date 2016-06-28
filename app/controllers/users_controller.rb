@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id params[:id]
+    @books = Book.favorite(params[:id]).paginate page: params[:page]
   end
 
   def new

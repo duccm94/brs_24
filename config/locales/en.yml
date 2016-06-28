@@ -84,4 +84,5 @@ en:
   search: "Search"
   request: "Request"
   cancel: "Cancel"
-  favorite: "Favorite"
+  favorite: "Favorite book"
+  userfavorite: "%{username}'s favorite books"
