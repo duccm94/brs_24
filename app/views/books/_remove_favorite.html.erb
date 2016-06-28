@@ -1,0 +1,5 @@
+<%= form_for current_user.activities.find_by(action_type: Settings.favorite_type,
+      target_id: target_id), html: {method: :delete}, remote: true  do |f| %>
+  <%= f.submit t(:remove_favorite), class: "btn" %>
+  <%= render "shared/error_messages", object: f.object %>
+<% end %>

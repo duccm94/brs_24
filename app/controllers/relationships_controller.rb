@@ -7,6 +7,7 @@ class RelationshipsController < ApplicationController
       flash.now[:danger] = t :followed
     else
       current_user.follow @user
+      add_activity current_user, Settings.follow_type, @user.id
     end
     respond_to do |format|
       format.html {redirect_to @user}
@@ -19,6 +20,7 @@ class RelationshipsController < ApplicationController
     if @relationship
       @user = @relationship.followed
       current_user.unfollow @user
+      remove_activity current_user, Settings.follow_type, @user.id
     else
       flash.now[:danger] = t :unfollowed
     end

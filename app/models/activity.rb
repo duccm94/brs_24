@@ -3,5 +3,5 @@ class Activity < ActiveRecord::Base
 
   has_many :likes, dependent: :destroy
 
-  enum action_type: ["read", "favorite", "follow", "followed", "review", "comment"]
+  enum action_type: ["read", "favorite", "follow", "review", "comment"]
 end
