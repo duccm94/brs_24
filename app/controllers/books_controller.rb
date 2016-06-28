@@ -19,6 +19,6 @@ class BooksController < ApplicationController
 
   private
   def filtering_params params
-    params.slice :title, :category
+    params.slice :title, :category, :rating, :favorite
   end
 end
