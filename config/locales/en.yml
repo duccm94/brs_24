@@ -86,3 +86,4 @@ en:
   cancel: "Cancel"
   favorite: "Favorite book"
   userfavorite: "%{username}'s favorite books"
+  userread: "%{username}'s read books"

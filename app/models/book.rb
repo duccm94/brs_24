@@ -17,6 +17,8 @@ class Book < ActiveRecord::Base
   scope :rating, -> rating {where("rating >= ?", "#{rating}")}
   scope :favorite, -> user_id {where("id in (select target_id from activities
     where (action_type = 1 and user_id = #{user_id}))")}
+  scope :read, -> user_id {where("id in (select target_id from activities
+    where (action_type = 0 and user_id = #{user_id}))")}
 
   private
   def picture_size

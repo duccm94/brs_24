@@ -27,7 +27,12 @@ end
   Category.create! name: name
 end
 
-5.times do |n|
-  book_id = "#{n+1}"
+3.times do |n|
+  book_id = "#{2*n+1}"
   Activity.create! action_type: 1, target_id: book_id, user_id: "1"
+end
+
+10.times do |n|
+  book_id = "#{n+1}"
+  Activity.create! action_type: 0, target_id: book_id, user_id: "1"
 end
