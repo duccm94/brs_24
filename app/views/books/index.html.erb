@@ -8,6 +8,10 @@
   <%= select_tag :category,
     options_from_collection_for_select(@categories, "id", "name"),
     include_blank: true %>
+  <%= label_tag :rating %>
+  <%= number_field_tag :rating, params[:rating], within: 1..10 %>
+  <%= label_tag :favorite %>
+  <%= check_box_tag :favorite, current_user.id %>
   <%= submit_tag t :search %>
 <% end %>
 

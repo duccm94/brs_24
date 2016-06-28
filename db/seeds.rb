@@ -26,3 +26,8 @@ end
   name = Faker::Book.genre
   Category.create! name: name
 end
+
+5.times do |n|
+  book_id = "#{n+1}"
+  Activity.create! action_type: 1, target_id: book_id, user_id: "1"
+end
