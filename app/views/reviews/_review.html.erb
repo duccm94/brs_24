@@ -17,6 +17,8 @@
         <%= link_to t(:delete), review, method: :delete,
           remote: true if current_user? review.user %>
       </div>
+      <%= link_to t(:edit), edit_review_path(review), class: "btn btn-primary",
+        remote: true %>
     </div>  
   </div>
   <div class="clearfix"></div>

@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   resources :users
   resources :relationships, only: [:create, :destroy]
   resources :books, only: [:index, :show]
-  resources :reviews, only: [:create, :destroy]
-  resources :comments, only: [:create, :destroy]
+  resources :reviews
+  resources :comments
   resources :requests, only: [:create, :destroy]
   resources :activities, only: [:create, :destroy]
 
