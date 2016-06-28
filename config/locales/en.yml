@@ -87,3 +87,8 @@ en:
   favorite: "Favorite book"
   userfavorite: "%{username}'s favorite books"
   userread: "%{username}'s read books"
+  add_favorite: "Add Favorite"
+  remove_favorite: "Remove Favorite"
+  add_readbook: "Mark as read book"
+  remove_readbook: "Remove list read book"
+  noactivity: "Not find activity"

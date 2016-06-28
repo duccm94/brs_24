@@ -4,8 +4,7 @@ class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.build comment_params
     if @comment.save
-      add_activity current_user, Settings.comment_type,
-        @comment.review.book_id
+      add_activity "comment", @comment.review.book_id
       respond_to do |format|
         format.html {redirect_to root_url}
         format.js
@@ -19,8 +18,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find_by_id params[:id]
     @comment.destroy
-    remove_activity current_user, Settings.comment_type,
-      @comment.review.book_id
+    remove_activity "comment", @comment.review.book_id
     respond_to do |format|
       format.html {redirect_to root_url}
       format.js

@@ -1,5 +1,5 @@
-<%= form_for current_user.activities.find_by(action_type: Settings.read_type,
-      target_id: target_id), html: {method: :delete}, remote: true  do |f| %>
+<%= form_for current_user.activities.read.find_by(target_id: target_id),
+  html: {method: :delete}, remote: true  do |f| %>
   <%= f.submit t(:remove_readbook), class: "btn" %>
   <%= render "shared/error_messages", object: f.object %>
 <% end %>
