@@ -8,29 +8,19 @@
 <%= pluralize @user.followers.count, t("followers") %>
 
 <ul class="books">
-  <% if @books.any? %>
+  <% if @favorite_books.any? %>
     <%= t :userfavorite, username: @user.name %>
-    <% @books.each do |book| %>
-      <li id="book-<%= book.id %>">
-        <span class="title">
-          <%= link_to book.title, book %>
-        </span>
-        <span class="book-info">
-          <%= image_tag book.picture.url if book.picture? %>
-          <%= t :author %>
-          <%= book.author %>
-          <%= t :publish_date %>
-          <%= book.publish_date %>
-          <%= t :number_pages %>
-          <%= book.number_pages %>
-          <%= t :category %>
-          <%= book.category.name %>
-        </span>
-        <span class="timestamp">
-          <%= t :posted %>
-          <%= time_ago_in_words book.created_at %>
-        </span>
-      </li>
+    <% @favorite_books.each do |book| %>
+      <%= render "shared/show_book", book: book %>
+    <% end %>
+  <% end %>
+</ul>
+
+<ul class="books">
+  <% if @read_books.any? %>
+    <%= t :userread, username: @user.name %>
+    <% @read_books.each do |book| %>
+      <%= render "shared/show_book", book: book %>
     <% end %>
   <% end %>
 </ul>

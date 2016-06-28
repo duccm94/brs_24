@@ -1,25 +1,4 @@
-<span class="title">
-  <%= link_to book.title, book %>
-</span>
-<span class="book-info">
-  <%= image_tag book.picture.url if book.picture? %>
-  <%= t :author %>
-  <%= book.author %>
-  <%= t :publish_date %>
-  <%= book.publish_date %>
-  <%= t :number_pages %>
-  <%= book.number_pages %>
-</span>
-<span class="timestamp">
-  <%= t :posted %>
-  <%= book.created_at.strftime t(:timetype) %>
-</span>
-<span class="book-rating" id="book_rating">
-  <% if book.rating > 0.0 %>
-    <%= t :rating %>
-    <%= book.rating %>
-  <% end %>
-</span>
+<%= render "shared/show_book", book: book %>
 <% if logged_in? %>
   <div id="request_form">
     <%= render current_user.request?(book.id) ? "cancel" : "request",
