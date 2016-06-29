@@ -20,5 +20,6 @@ Rails.application.routes.draw do
     resources :users, except: [:new, :create]
     resources :categories
     resources :books
+    resources :requests, only: [:index, :update, :destroy]
   end
 end

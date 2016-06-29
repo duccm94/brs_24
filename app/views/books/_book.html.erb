@@ -1,8 +1,15 @@
 <%= render "shared/show_book", book: book %>
 <% if logged_in? %>
   <div id="request_form">
-    <%= render current_user.request?(book.id) ? "cancel" : "request",
-      book_id: book.id %>
+    <% if current_user.request?(book.id) %>
+      <% if @request.request_status %>
+        <%= t :accepted %>
+      <% else %>
+        <%= render "cancel", book_id: book.id %>
+      <% end %>
+    <% else %>
+      <%= render "request", book_id: book.id %>
+    <% end %>
   </div>
   <div id="activity_form">
     <div id="favorite_form">

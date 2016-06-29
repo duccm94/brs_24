@@ -92,3 +92,6 @@ en:
   add_readbook: "Mark as read book"
   remove_readbook: "Remove list read book"
   noactivity: "Not find activity"
+  allrequests: "All requests"
+  accept: "Accept"
+  accepted: "Accepted"

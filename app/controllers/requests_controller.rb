@@ -23,6 +23,6 @@ class RequestsController < ApplicationController
 
   private
   def request_params
-    params.require(:request).permit :book_id
+    params.require(:request).permit :book_id, :request_status
   end
 end

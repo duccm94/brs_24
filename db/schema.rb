@@ -76,10 +76,11 @@ ActiveRecord::Schema.define(version: 20160624075614) do
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
 
   create_table "requests", force: :cascade do |t|
+    t.boolean  "request_status"
     t.integer  "user_id"
     t.integer  "book_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   add_index "requests", ["book_id"], name: "index_requests_on_book_id"

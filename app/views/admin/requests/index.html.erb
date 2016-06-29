@@ -1,0 +1,27 @@
+<% provide :title, t(:allrequests) %>
+<h1><%= t :allrequests %></h1>
+
+<%= will_paginate %>
+<ul class="requests">
+  <% @requests.each do |request| %>
+    <li id="request-<%= request.id %>">
+      <span>
+        <%= link_to request.user(request.user_id).name, request.user(request.user_id) %>
+        <%= link_to request.book(request.book_id).title, request.book(request.book_id) %>
+        <%= link_to t(:delete), [:admin, request], method: :delete, data: {confirm: t(:areyousure)} %>
+        <div id="request_accept">
+          <% if request.request_status %>
+            <%= t :accepted %>
+          <% else %>
+            <%= form_for [:admin, request], remote: true do |f| %>
+              <%= f.hidden_field :request_status, value: true %>
+              <%= f.submit t(:accept), class: "btn btn-primary" %>
+              <%= render "shared/error_messages", object: f.object %>
+            <% end %>
+          <% end %>
+        </div>
+      </span>
+    </li>
+  <% end %>
+</ul>
+<%= will_paginate %>
