@@ -6,6 +6,8 @@ class UsersController < ApplicationController
     @user = User.find_by_id params[:id]
     @favorite_books = Book.favorite(params[:id]).paginate page: params[:page]
     @read_books = Book.read(params[:id]).paginate page: params[:page]
+    @activities = @user.activities.order(created_at: :desc).
+      paginate page: params[:page]
   end
 
   def new
