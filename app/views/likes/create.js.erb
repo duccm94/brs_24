@@ -1,0 +1,4 @@
+$("#like_form_<%= @like.activity.id %>").html("<%= j render "likes/unlike",
+  activity_id: @like.activity.id %>");
+$("#like_count_<%= @like.activity.id %>").
+  html("<%= pluralize @like.activity.likes.count, t("like") %>");

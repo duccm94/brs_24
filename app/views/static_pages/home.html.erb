@@ -1,6 +1,40 @@
 <% provide :title, t("home") %>
-<body id="homebackground">
+
+<% if logged_in? %>
+  <ul class="activities">
+    <% @activities.each do |activity| %>
+      <div class="activity" id="activity-<%= activity.id %>">
+        <span class="activity-info">
+          <%= link_to activity.find_user(activity.user_id).name,
+            user_path(activity.user_id) %>
+          <%= activity.timeline %>
+          <% if activity.read? || activity.favorite? %>
+            <%= link_to activity.target.title, book_path(activity.target) %>
+          <% elsif activity.follow? %>
+            <%= link_to activity.target.name, user_path(activity.target) %>
+          <% elsif activity.review? %>
+            <%= link_to activity.target.book.title, book_path(activity.target) %>
+          <% elsif activity.comment? %>
+            <%= link_to activity.target.review.book.title,
+              book_path(activity.target) %>
+          <% end %>
+        </span>
+        <span class="timestamp">
+          <%= time_ago_in_words activity.created_at %>
+        </span>
+        <div class="float-right" id="like_form_<%= activity.id %>">
+          <%= render activity.like?(current_user.id) ?
+            "likes/unlike" : "likes/like", activity_id: activity.id %>
+        </div>
+        <div class="float-right" id="like_count_<%= activity.id %>">
+          <%= pluralize activity.likes.count, t("like") %>
+        </div>
+      </div>
+    <% end %>
+    <%= will_paginate @activities %>
+  </ul>
+<% else %>
   <div class="center">
     <%= link_to t("signupnow"), signup_path, class: "btn btn-lg btn-primary" %>
   </div>
-</body>
+<% end %>

@@ -1,54 +1,43 @@
 <% provide :title, @user.name %>
 <h1><%= @user.name %></h1>
 
-<div class="col-md-6">
+<div class="btn-group profile-btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default">
+    <%= pluralize @user.reviews.count, t("review") %>
+  </button>
+  <button type="button" class="btn btn-default">
+    <%= pluralize @user.following.count, t("following") %>
+  </button>
+  <button type="button" class="btn btn-default">
+    <%= pluralize @user.followers.count, t("followers") %>
+  </button>
   <% if logged_in? %>
     <%= render "follow_form" %>
   <% end %>
-  <%= pluralize @user.reviews.count, t("review") %>
-  <%= pluralize @user.following.count, t("following") %>
-  <%= pluralize @user.followers.count, t("followers") %>
-  <ul class="activities">
-    <% @activities.each do |activity| %>
-      <li id="activity-<%= activity.id %>">
-        <span class="activity">
-          <%= link_to @user.name, user_path(@user) %>
-          <%= activity.timeline %>
-          <% if activity.read? || activity.favorite? %>
-            <%= link_to activity.target.title, book_path(activity.target) %>
-          <% elsif activity.follow? %>
-            <%= link_to activity.target.name, user_path(activity.target) %>
-          <% elsif activity.review? %>
-            <%= link_to activity.target.book.title, book_path(activity.target) %>
-          <% elsif activity.comment? %>
-            <%= link_to activity.target.review.book.title,
-              book_path(activity.target) %>
-          <% end %>
-        </span>
-        <span class="timestamp">
-          <%= time_ago_in_words activity.created_at %>
-        </span>
-      </li>
-    <% end %>
-  </ul>
 </div>
 
-<div class="col-md-6">
-  <ul class="books">
-    <% if @favorite_books.any? %>
-      <%= t :userfavorite, username: @user.name %>
-      <% @favorite_books.each do |book| %>
-        <%= render "shared/show_book", book: book %>
+<div class="row">
+  <div class="col-md-6">
+    <ul class="books">
+      <% if @favorite_books.any? %>
+        <h3><%= t :userfavorite, username: @user.name %></h3>
+        <% @favorite_books.each do |book| %>
+          <%= render "shared/show_book", book: book %>
+        <% end %>
+        <%= will_paginate @favorite_books %>
       <% end %>
-    <% end %>
-  </ul>
+    </ul>
+  </div>
 
-  <ul class="books">
-    <% if @read_books.any? %>
-      <%= t :userread, username: @user.name %>
-      <% @read_books.each do |book| %>
-        <%= render "shared/show_book", book: book %>
+  <div class="col-md-6">
+    <ul class="books">
+      <% if @read_books.any? %>
+        <h3><%= t :userread, username: @user.name %></h3>
+        <% @read_books.each do |book| %>
+          <%= render "shared/show_book", book: book %>
+        <% end %>
+        <%= will_paginate @read_books %>
       <% end %>
-    <% end %>
-  </ul>
+    </ul>
+  </div>
 </div>

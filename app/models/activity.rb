@@ -31,4 +31,12 @@ class Activity < ActiveRecord::Base
       Comment.find_by_id target_id
     end
   end
+
+  def like? user_id
+    likes.find_by user_id: user_id
+  end
+
+  def find_user user_id
+    User.find_by_id user_id
+  end
 end

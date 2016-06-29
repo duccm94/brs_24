@@ -1,0 +1,7 @@
+<%= form_for current_user.likes.find_by(activity_id: activity_id),
+  html: {method: :delete}, remote: true do |f| %>
+  <%= button_tag type: "submit", class: "btn btn-xs" do %>
+    <span class="glyphicon glyphicon-thumbs-down"></span>
+  <% end %>
+  <%= render "shared/error_messages", object: f.object %>
+<% end %>
