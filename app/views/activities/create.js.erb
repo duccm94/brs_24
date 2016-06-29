@@ -1,0 +1,12 @@
+<% if @activity.save %>
+  <% if @activity.favorite? %>
+    $("#favorite_form").html("<%= j render "books/remove_favorite",
+      target_id: @activity.target_id %>");
+  <% end %>
+  <% if @activity.read? %>
+    $("#read_form").html("<%= j render "books/remove_readbook",
+      target_id: @activity.target_id %>");
+  <% end %>
+<% else %>
+  $("#flash_error").html("<%= j render "shared/flash_error" %>");
+<% end %>

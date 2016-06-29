@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :reviews, only: [:create, :destroy]
   resources :comments, only: [:create, :destroy]
   resources :requests, only: [:create, :destroy]
+  resources :activities, only: [:create, :destroy]
 
   namespace :admin do
     resources :users, except: [:new, :create]

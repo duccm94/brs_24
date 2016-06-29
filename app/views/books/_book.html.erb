@@ -6,11 +6,11 @@
   </div>
   <div id="activity_form">
     <div id="favorite_form">
-      <%= render current_user.activity?(Settings.favorite_type, book.id) ?
+      <%= render current_user.activity?("favorite", book.id) ?
         "remove_favorite" : "add_favorite", target_id: book.id %>
     </div>
     <div id="read_form">
-      <%= render current_user.activity?(Settings.read_type, book.id) ?
+      <%= render current_user.activity?("read", book.id) ?
         "remove_readbook" : "add_readbook", target_id: book.id %>
     </div>
   </div>

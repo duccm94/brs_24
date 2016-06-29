@@ -67,6 +67,7 @@ class User < ActiveRecord::Base
   end
 
   def activity? action_type, book_id
-    activities.where(action_type: action_type, target_id: book_id).present?
+    activities.find_by action_type: Activity.action_types[action_type],
+      target_id: book_id.present?
   end
 end

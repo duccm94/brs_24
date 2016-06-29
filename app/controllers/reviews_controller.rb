@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
     @comment = Comment.new
     if @review.save
       make_rating @book if @review.rate.present?
-      add_activity current_user, Settings.review_type, @book.id
+      add_activity "review", @book.id
       respond_to do |format|
         format.html {redirect_to root_url}
         format.js
@@ -26,7 +26,7 @@ class ReviewsController < ApplicationController
     @book = @review.book
     @review.destroy
     make_rating @book if @review.rate.present?
-    remove_activity current_user, Settings.review_type, @book.id
+    remove_activity "review", @book.id
     respond_to do |format|
       format.html {redirect_to root_url}
       format.js
