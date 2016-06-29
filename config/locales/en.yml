@@ -107,3 +107,7 @@ en:
   commentupdated: "Comment Updated"
   like: "like"
   unlike: "unlike"
+  newbook: "New book"
+  newcategory: "New category"
+  user: "User:"
+  requestcolon: "Request:"

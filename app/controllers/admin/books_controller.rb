@@ -8,6 +8,7 @@ class Admin::BooksController < ApplicationController
 
   def new
     @book = Book.new
+    @categories = Category.all
   end
 
   def create

@@ -1,7 +1,14 @@
 <% provide :title, t("allbooks") %>
 <h1><%= t :allbooks %></h1>
 <div class="row">
+  <div class="center">
+    <%= link_to t(:newbook), new_admin_book_path, class: "btn btn-primary btn-lg" %>
+  </div>
   <% @books.each do |book| %>
+    <%= link_to t(:delete), [:admin, book], method: :delete,
+      data: {confirm: t(:areyousure)}, class: "btn btn-danger float-right" %>
+    <%= link_to t(:edit), edit_admin_book_path(book),
+      class: "btn btn-primary" %>
     <%= render "shared/show_book", book: book %>
   <% end %>
   <%= will_paginate %>
