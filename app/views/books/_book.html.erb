@@ -25,13 +25,15 @@
     <%= book.reviews.count %>
     <%= t :reviews %>
   </div>
-  <section class="review">
-    <%= render "shared/review_form", book: book %>
-  </section>
-  <div id="reviews_<%= book.id %>">
-    <% if book.reviews.any? %>
-      <%= render @reviews, book: book %>
-      <%= will_paginate @reviews %>
-    <% end %>
+  <div id="review">
+    <section class="review">
+      <%= render "shared/review_form", book: book %>
+    </section>
+    <div id="reviews_<%= book.id %>">
+      <% if book.reviews.any? %>
+        <%= render @reviews, book: book %>
+        <%= will_paginate @reviews %>
+      <% end %>
+    </div>
   </div>
 <% end %>

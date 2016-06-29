@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :destroy]
+  before_action :logged_in_user, except: [:new, :show, :index]
+  before_action :find_review, only: [:edit, :update]
 
   def create
     @review = current_user.reviews.build review_params
@@ -33,6 +34,18 @@ class ReviewsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @review.update_attributes review_params
+      make_rating @review.book
+      @comment = Comment.new
+    else
+      render :edit
+    end
+  end
+
   private
   def review_params
     params.require(:review).permit :content, :book_id, :rate
@@ -41,5 +54,13 @@ class ReviewsController < ApplicationController
   def make_rating book
     rating = book.reviews.where.not(rate: nil).average(:rate)
     book.update_attributes rating: rating
+  end
+
+  def find_review
+    @review = Review.find params[:id]
+    if @review.empty?
+      flash.now[:danger] = t :error
+      redirect_to :back
+    end
   end
 end

@@ -1,0 +1,3 @@
+$("#review_<%= @review.id %>").html("<%= j render "reviews/review",
+  review: @review, book: @review.book %>");
+$("#book_rating").html("<%= "#{t(:rating)} #{@review.book.rating}" %>");
