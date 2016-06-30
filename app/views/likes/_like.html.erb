@@ -1,0 +1,7 @@
+<%= form_for @like, remote: true do |f| %>
+  <%= f.hidden_field :activity_id, value: activity_id %>
+  <%= button_tag type: "submit", class: "btn btn-primary btn-xs" do %>
+    <span class="glyphicon glyphicon-thumbs-up"></span>
+  <% end %>
+  <%= render "shared/error_messages", object: f.object %>
+<% end %>
