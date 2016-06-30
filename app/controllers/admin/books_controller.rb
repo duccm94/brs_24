@@ -3,7 +3,12 @@ class Admin::BooksController < ApplicationController
   before_action :find_book, only: [:edit, :update, :destroy]
 
   def index
-    @books = Book.paginate page: params[:page]
+    @categories = Category.all
+    @books = Book.where nil
+    filtering_params(params).each do |key, value|
+      @books = @books.public_send key, value if value.present?
+    end
+    @books = @books.paginate page: params[:page]
   end
 
   def new
@@ -52,5 +57,9 @@ class Admin::BooksController < ApplicationController
       flash[:danger] = t :findfail
       redirect_to admin_books_path
     end
+  end
+
+  def filtering_params params
+    params.slice :title, :category, :rating
   end
 end

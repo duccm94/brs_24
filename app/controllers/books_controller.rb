@@ -10,11 +10,16 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find_by_id params[:id]
-    @review = Review.new
-    @comment = Comment.new
-    @request = current_user.requests.find_by(book_id: @book.id) || Request.new
-    @reviews = @book.reviews.order(created_at: :desc).paginate page: params[:page],
-      per_page: Settings.sizepage
+    if @book
+      @review = Review.new
+      @comment = Comment.new
+      @request = current_user.requests.find_by(book_id: @book.id) || Request.new
+      @reviews = @book.reviews.order(created_at: :desc).paginate page: params[:page],
+        per_page: Settings.sizepage
+    else
+      flash[:danger] = t :error
+      redirect_to books_path
+    end
   end
 
   private

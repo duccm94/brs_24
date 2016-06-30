@@ -5,7 +5,7 @@
     </span>
   </div>
   <div class="col-md-8">
-    <div class="col-md-11">
+    <div class="col-md-10">
       <b><%= link_to comment.user.name, comment.user %></b>
       <span class="time-small">
         <%= comment.created_at.strftime t(:timetype) %>
@@ -14,7 +14,7 @@
         <%= comment.content %>
       </div>
     </div>
-    <div class="col-md-1">
+    <div class="col-md-2">
       <%= link_to t(:delete), comment, method: :delete,
         remote: true if current_user? comment.user %>
       <%= link_to t(:edit), edit_comment_path(comment), comment: comment,

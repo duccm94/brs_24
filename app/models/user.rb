@@ -67,11 +67,16 @@ class User < ActiveRecord::Base
   end
 
   def activity? action_type, book_id
-    activities.find_by action_type: Activity.action_types[action_type],
-      target_id: book_id.present?
+    activities.find_by(action_type: Activity.action_types[action_type],
+      target_id: book_id).present?
   end
 
   def review_book? book_id
     reviews.find_by book_id: book_id
+  end
+
+  def feed
+    following_ids = "SELECT followed_id FROM relationships WHERE follower_id = :user_id"
+    Activity.where "user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id
   end
 end

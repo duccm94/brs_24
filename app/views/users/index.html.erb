@@ -1,0 +1,13 @@
+<% provide :title, t("allusers") %>
+<h1><%= t :allusers %></h1>
+<div class="row">
+  <% @users.each do |user| %>
+    <div class="user">
+      <span class="float-left user_avatar">
+        <%= link_to gravatar_for(user), user %>
+      </span>
+      <%= link_to user.name, user_path(user) %>
+    </div>
+  <% end %>
+  <%= will_paginate %>
+</div>

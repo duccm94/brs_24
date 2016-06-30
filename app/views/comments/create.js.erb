@@ -1,3 +1,7 @@
-$("#comment_<%= @comment.review_id %>").append("<%= j render 'comments/comment',
-  comment: @comment %>");
-$("#comment_content_<%= @comment.review_id %>").val('')
+<% if @comment.save %>
+  $("#comment_<%= @comment.review_id %>").append("<%= j render 'comments/comment',
+    comment: @comment %>");
+  $("#comment_content_<%= @comment.review_id %>").val('')
+<% else %>
+  alert("<%= @comment.errors.full_messages %>");
+<% end %>

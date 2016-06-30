@@ -1,18 +1,29 @@
 <% provide :title, t(:allrequests) %>
 <h1><%= t :allrequests %></h1>
 
-<%= will_paginate %>
-<ul class="requests">
-  <% @requests.each do |request| %>
-    <div class="request" id="request-<%= request.id %>">
-      <span>
-        <%= t :user %>
-        <%= link_to request.user(request.user_id).name, request.user(request.user_id) %>
-        <%= t :requestcolon %>
-        <%= link_to request.book(request.book_id).title, request.book(request.book_id) %>
-        <div id="request_accept">
-        <%= link_to t(:delete), [:admin, request], method: :delete,
-          data: {confirm: t(:areyousure)}, class: "btn btn-danger float-right" %>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>User name</th>
+      <th>Request book</th>
+      <th>Accept</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @requests.each do |request| %>
+      <tr id="request-<%= request.id %>">
+        <th scope=row>
+          <%= link_to request.user_id, request.user(request.user_id) %>
+        </th>
+        <td>
+          <%= link_to request.user(request.user_id).name, request.user(request.user_id) %>
+        </td>
+        <td>
+          <%= link_to request.book(request.book_id).title, request.book(request.book_id) %>
+        </td>
+        <td>
           <% if request.request_status %>
             <button type="button" class="btn btn-success" disabled="disabled">
               <%= t :accepted %>
@@ -24,9 +35,13 @@
               <%= render "shared/error_messages", object: f.object %>
             <% end %>
           <% end %>
-        </div>
-      </span>
-    </div>
-  <% end %>
-</ul>
+        </td>
+        <td>
+          <%= link_to t(:delete), [:admin, request], method: :delete, data:
+            {confirm: t(:areyousure)}, class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <%= will_paginate %>

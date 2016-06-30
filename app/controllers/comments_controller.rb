@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_action :logged_in_user, except: [:new, :show, :index]
   before_action :find_comment, only: [:destroy, :update, :edit]
-  
+
   def create
     @comment = current_user.comments.build comment_params
     if @comment.save
@@ -11,8 +11,7 @@ class CommentsController < ApplicationController
         format.js
       end
     else
-      flash[:alert] = t :error
-      redirect_to :back
+      flash.now[:danger] = @comment.errors.full_messages
     end
   end
 

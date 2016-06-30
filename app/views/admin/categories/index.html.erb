@@ -1,5 +1,6 @@
 <% provide :title, t("allcategories") %>
 <h1><%= t :allcategories %></h1>
+
 <div class="row">
   <div class="center">
     <%= link_to t(:newcategory), new_admin_category_path,
@@ -7,11 +8,11 @@
   </div>
   <% @categories.each do |category| %>
     <div class="category">
-      <%= category.name %>
+      <%= link_to category.name, admin_category_path(category) %>
       <%= link_to t(:delete), [:admin, category], method: :delete,
-        data: {confirm: t(:areyousure)}, class: "btn btn-danger float-right" %>
+        data: {confirm: t(:areyousure)}, class: "btn btn-danger float-right category-button" %>
       <%= link_to t(:edit), edit_admin_category_path(category),
-        class: "btn btn-primary" %>
+        class: "btn btn-primary float-right category-button" %>
     </div>
   <% end %>
   <%= will_paginate %>

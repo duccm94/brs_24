@@ -6,7 +6,7 @@
       </span>
     </div>
     <div class="col-md-9">
-      <div class="col-md-11">
+      <div class="col-md-10">
         <b><%= link_to review.user.name, review.user %></b>
         <%= t :rating %>
         <%= review.rate if review.rate.present? %>
@@ -17,9 +17,9 @@
           <%= review.content %>
         </div>
       </div>
-      <div class="col-md-1">
+      <div class="col-md-2">
         <%= link_to t(:delete), review, method: :delete,
-          remote: true if current_user? review.user %>
+          data: {confirm: t(:areyousure)} if current_user? review.user %>
         <%= link_to t(:edit), edit_review_path(review),
           remote: true if current_user? review.user %>
       </div>

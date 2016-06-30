@@ -1,8 +1,15 @@
 <div id="book-<%= book.id %>">
   <div class="book">
+    <div class="book-picture">
+      <%= image_tag book.picture.url, :alt => "Book image", width: 125,
+        height: 125, class: "float-right" if book.picture? %>
+    </div>
     <div class="book-title">
-      <%= image_tag book.picture.url if book.picture? %>
       <%= link_to book.title, book %>
+    </div>
+    <div class="book-category">
+      <%= t :category %>
+      <%= book.category.name %>
     </div>
     <div class="book-author">
       <%= t :author %>
@@ -15,15 +22,6 @@
     <div class="book-number-pages">
       <%= t :numberpages %>
       <%= book.number_pages %>
-    </div>
-    <div class="book-category">
-      <%= t :category %>
-      <%= book.category.name %>
-    </div>
-    <div class="timestamp">
-      <%= t :posted %>
-      <%= time_ago_in_words book.created_at %>
-      <%= book.created_at.strftime t :timetype %>
     </div>
     <div class="book-rating" id="book_rating">
       <% if book.rating > 0.0 %>

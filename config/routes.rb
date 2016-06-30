@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :books, only: [:index, :show]
   resources :reviews
   resources :comments
-  resources :requests, only: [:create, :destroy]
+  resources :requests, only: [:index, :create, :destroy]
   resources :activities, only: [:create, :destroy]
   resources :likes, only: [:create, :destroy]
 

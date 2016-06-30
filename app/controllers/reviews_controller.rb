@@ -28,10 +28,8 @@ class ReviewsController < ApplicationController
     @review.destroy
     make_rating @book if @review.rate.present?
     remove_activity "review", @book.id
-    respond_to do |format|
-      format.html {redirect_to root_url}
-      format.js
-    end
+    flash[:success] = t :success
+    redirect_to @book
   end
 
   def edit

@@ -4,12 +4,45 @@
   <div class="center">
     <%= link_to t(:newbook), new_admin_book_path, class: "btn btn-primary btn-lg" %>
   </div>
-  <% @books.each do |book| %>
-    <%= link_to t(:delete), [:admin, book], method: :delete,
-      data: {confirm: t(:areyousure)}, class: "btn btn-danger float-right" %>
-    <%= link_to t(:edit), edit_admin_book_path(book),
-      class: "btn btn-primary" %>
-    <%= render "shared/show_book", book: book %>
+
+  <%= form_tag admin_books_path, method: "get" do %>
+    <%= label_tag :title %>
+    <%= text_field_tag :title, params[:title] %>
+    <%= label_tag :category %>
+    <%= select_tag :category, options_from_collection_for_select(@categories,
+      "id", "name", params[:category]), include_blank: true %>
+    <%= label_tag :rating %>
+    <%= number_field_tag :rating, params[:rating], within: 1..10 %>
+    <%= submit_tag t :search %>
   <% end %>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Author</th>
+        <th>Publish date</th>
+        <th>Pages</th>
+        <th>Created at</th>
+        <th>Rating</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @books.each do |book| %>
+        <tr>
+          <%= render "shared/show_book_table", book: book %>
+          <td><%= link_to t(:edit), edit_admin_book_path(book),
+            class: "btn btn-primary" %></td>
+          <td><%= link_to t(:delete), [:admin, book], method: :delete,
+            data: {confirm: t(:areyousure)}, class: "btn btn-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
   <%= will_paginate %>
 </div>

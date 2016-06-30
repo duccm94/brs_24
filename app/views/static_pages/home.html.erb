@@ -1,11 +1,14 @@
 <% provide :title, t("home") %>
-<h1><%= t :timeline %></h1>
 
 <% if logged_in? %>
+<h1><%= t :timeline %></h1>
   <ul class="activities">
     <% @activities.each do |activity| %>
       <div class="activity" id="activity-<%= activity.id %>">
         <span class="activity-info">
+          <span class="float-left user_avatar">
+            <%= link_to gravatar_for(activity.user), activity.user %>
+          </span>
           <%= link_to activity.find_user(activity.user_id).name,
             user_path(activity.user_id) %>
           <%= activity.timeline %>
@@ -36,5 +39,6 @@
 <% else %>
   <div class="center">
     <%= link_to t("signupnow"), signup_path, class: "btn btn-lg btn-primary" %>
+    <%= link_to t("login"), login_path, class: "btn btn-lg btn-primary" %>
   </div>
 <% end %>

@@ -1,9 +1,13 @@
 class Admin::CategoriesController < ApplicationController
   before_action :require_admin
-  before_action :find_category, only: [:edit, :update, :destroy]
+  before_action :find_category, only: [:show, :edit, :update, :destroy]
 
   def index
     @categories = Category.paginate page: params[:page]
+  end
+
+  def show
+    @books = Book.where(category_id: @category.id).paginate page: params[:page]
   end
 
   def new

@@ -21,6 +21,10 @@ class RequestsController < ApplicationController
     end
   end
 
+  def index
+    @requests = current_user.requests.paginate page: params[:page]
+  end
+
   private
   def request_params
     params.require(:request).permit :book_id, :request_status

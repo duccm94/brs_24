@@ -1,4 +1,6 @@
-<%= render "shared/show_book", book: book %>
+<div class="col-md-6 col-md-offset-3">
+  <%= render "shared/show_book", book: book %>
+</div>
 <% if logged_in? %>
   <div class="row">
     <div class="col-md-2 col-md-offset-3" id="request_form">
@@ -31,7 +33,12 @@
   </div>
   <div id="review">
     <section id="review_form">
-      <%= render "shared/review_form", book: book unless current_user.review_book? book.id %>
+      <% if current_user.review_book?(book.id).present? %>
+        <%= link_to t(:editreview), edit_review_path(current_user.review_book? book.id),
+          remote: true %>
+      <% else %>
+        <%= render "shared/review_form", book: book %>
+      <% end %>
     </section>
     <div id="reviews_<%= book.id %>">
       <% if book.reviews.any? %>

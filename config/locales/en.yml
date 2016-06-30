@@ -57,7 +57,7 @@ en:
   followed: "Followed! Please reload page!"
   author: "Author:"
   publishdate: "Publish date:"
-  numberpages: "Number pages:"
+  numberpages: "Number of pages:"
   posted: "Posted:"
   category: "Category:"
   picturesize: "should be less than 5MB"
@@ -115,3 +115,4 @@ en:
   users: "Users"
   categories: "Categories"
   requests: "Requests"
+  listrequestedbook: "List requests"

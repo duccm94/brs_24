@@ -1,0 +1,13 @@
+<% provide :title, t("listrequestedbook") %>
+<h1><%= t :listrequestedbook %></h1>
+
+<ul class="requests">
+  <% @requests.each do |request| %>
+    <div class="request" id="request-<%= request.id %>">
+      <span>
+        <%= render "shared/show_book", book: request.book %>
+      </span>
+    </div>
+  <% end %>
+</ul>
+<%= will_paginate %>

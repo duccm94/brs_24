@@ -6,7 +6,7 @@
   <%= text_field_tag :title, params[:title] %>
   <%= label_tag :category %>
   <%= select_tag :category,
-    options_from_collection_for_select(@categories, "id", "name"),
+    options_from_collection_for_select(@categories, "id", "name", params[:category]),
     include_blank: true %>
   <%= label_tag :rating %>
   <%= number_field_tag :rating, params[:rating], within: 1..10 %>
@@ -17,7 +17,9 @@
 
 <ul class="books">
   <% @books.each do |book| %>
-    <%= render "shared/show_book", book: book %>
+    <div class="col-md-6">
+      <%= render "shared/show_book", book: book %>
+    </div>
   <% end %>
   <%= will_paginate @books %>
 </ul>

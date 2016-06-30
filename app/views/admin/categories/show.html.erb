@@ -1,0 +1,11 @@
+<% provide :title, @category.name %>
+<h1><%= @category.name %></h1>
+
+<ul class="books">
+  <% if @books.any? %>
+    <% @books.each do |book| %>
+      <%= render "shared/show_book", book: book %>
+    <% end %>
+    <%= will_paginate @books %>
+  <% end %>
+</ul>

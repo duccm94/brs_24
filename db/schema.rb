@@ -23,6 +23,12 @@ ActiveRecord::Schema.define(version: 20160624075614) do
 
   add_index "activities", ["user_id"], name: "index_activities_on_user_id"
 
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "books", force: :cascade do |t|
     t.string   "title"
     t.date     "publish_date"
@@ -36,12 +42,6 @@ ActiveRecord::Schema.define(version: 20160624075614) do
   end
 
   add_index "books", ["category_id"], name: "index_books_on_category_id"
-
-  create_table "categories", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"

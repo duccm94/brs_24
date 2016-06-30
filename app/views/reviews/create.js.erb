@@ -9,5 +9,5 @@
   $("#review_form").html("<%= render "shared/review_form",
     book: @review.book unless current_user.review_book? @review.book.id %>");
 <% else %>
-  $("#flash_error").html("<%= j render "shared/flash_error" %>");
+  alert("<%= @review.errors.full_messages %>");
 <% end %>
