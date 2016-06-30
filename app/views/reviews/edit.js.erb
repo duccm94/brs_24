@@ -1,1 +1,3 @@
+$("#review_form").html("<%= render "shared/review_form",
+  book: @review.book unless current_user.review_book? @review.book.id %>");
 $("#review_<%= @review.id %>").html("<%= j render "shared/review_form", book: @review.book %>");

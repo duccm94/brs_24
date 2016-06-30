@@ -26,9 +26,9 @@ class Activity < ActiveRecord::Base
     elsif follow?
       User.find_by_id target_id
     elsif review?
-      Review.find_by_id target_id
+      Book.find_by_id target_id
     elsif comment?
-      Comment.find_by_id target_id
+      Book.find_by_id target_id
     end
   end
 

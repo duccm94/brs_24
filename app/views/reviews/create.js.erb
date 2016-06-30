@@ -6,6 +6,8 @@
   $("#review_content_<%= @book.id %>").val("");
   $("#flash_error").html("<%= j render "shared/flash_error" %>");
   $("#rate").val("");
+  $("#review_form").html("<%= render "shared/review_form",
+    book: @review.book unless current_user.review_book? @review.book.id %>");
 <% else %>
   $("#flash_error").html("<%= j render "shared/flash_error" %>");
 <% end %>

@@ -18,7 +18,7 @@
       <%= link_to t(:delete), comment, method: :delete,
         remote: true if current_user? comment.user %>
       <%= link_to t(:edit), edit_comment_path(comment), comment: comment,
-      remote: true %>
+      remote: true if current_user? comment.user %>
     </div>
   </div>
 </div>
