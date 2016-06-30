@@ -8,18 +8,21 @@
     <div class="col-md-9">
       <div class="col-md-11">
         <b><%= link_to review.user.name, review.user %></b>
-        <%= review.content %>
+        <%= t :rating %>
         <%= review.rate if review.rate.present? %>
-        <br/>
-        <h6><%= review.created_at.strftime t(:timetype) %></h6>
+        <span class="time-small">
+          <%= review.created_at.strftime t(:timetype) %>
+        </span>
+        <div>
+          <%= review.content %>
+        </div>
       </div>
       <div class="col-md-1">
         <%= link_to t(:delete), review, method: :delete,
           remote: true if current_user? review.user %>
+        <%= link_to t(:edit), edit_review_path(review), remote: true %>
       </div>
-      <%= link_to t(:edit), edit_review_path(review), class: "btn btn-primary",
-        remote: true %>
-    </div>  
+    </div>
   </div>
   <div class="clearfix"></div>
   <div id="comment_<%= review.id %>">

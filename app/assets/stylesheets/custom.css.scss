@@ -18,6 +18,22 @@ body {
   text-align: center;
 }
 
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.time-small {
+  font-size: 0.9em;
+}
+
 /* footer */
 
 .footer {
@@ -100,4 +116,61 @@ input {
 #session_remember_me {
   width: auto;
   margin-left: 0;
+}
+
+/* books */
+.book {
+  border-left: 6px solid red;
+  background-color: #e7ffff;
+  margin: 10px;
+  padding: 10px;
+}
+
+/* profile */
+.profile-btn-group {
+  float: left;
+  margin-right: 10px;
+}
+
+/* activities */
+.activity {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 5px;
+}
+
+.activity:hover {
+  border: 1px solid blue;
+}
+
+/* category */
+.category {
+  border-left: 6px solid #2196F3;
+  background-color: #e7ffff;
+  margin: 10px;
+  padding: 10px;
+}
+
+/* request */
+.request {
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 5px;
+}
+
+.request:hover {
+  border: 1px solid blue;
+}
+
+/* user */
+.user {
+  border: 1px solid #ccc;
+  margin: 10px;
+  padding: 5px;
+}
+
+.user:hover {
+  border: 1px solid black;
+  background-color: #e7ffff;
 }

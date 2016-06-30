@@ -1,19 +1,21 @@
 <% provide :title, @user.name %>
 <h1><%= @user.name %></h1>
 
-<div class="btn-group profile-btn-group" role="group" aria-label="...">
-  <button type="button" class="btn btn-default">
-    <%= pluralize @user.reviews.count, t("review") %>
-  </button>
-  <button type="button" class="btn btn-default">
-    <%= pluralize @user.following.count, t("following") %>
-  </button>
-  <button type="button" class="btn btn-default">
-    <%= pluralize @user.followers.count, t("followers") %>
-  </button>
-  <% if logged_in? %>
-    <%= render "follow_form" %>
-  <% end %>
+<div class="row">
+  <div class="btn-group profile-btn-group" role="group" aria-label="...">
+    <button type="button" class="btn btn-default">
+      <%= pluralize @user.reviews.count, t("review") %>
+    </button>
+    <button type="button" class="btn btn-default">
+      <%= pluralize @user.following.count, t("following") %>
+    </button>
+    <button type="button" class="btn btn-default">
+      <%= pluralize @user.followers.count, t("followers") %>
+    </button>
+    <% if logged_in? %>
+      <%= render "follow_form" %>
+    <% end %>
+  </div>
 </div>
 
 <div class="row">
