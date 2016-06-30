@@ -43,7 +43,7 @@ class CommentsController < ApplicationController
 
   def find_comment
     @comment = Comment.find_by_id params[:id]
-    if @comment.empty?
+    if @comment.nil?
       flash.now[:danger] = t :error
       redirect_to :back
     end

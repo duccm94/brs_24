@@ -70,4 +70,8 @@ class User < ActiveRecord::Base
     activities.find_by action_type: Activity.action_types[action_type],
       target_id: book_id.present?
   end
+
+  def review_book? book_id
+    reviews.find_by book_id: book_id
+  end
 end

@@ -2,7 +2,12 @@ source "https://rubygems.org"
 
 gem "rails", "4.2.6"
 gem "bootstrap-sass", "~> 3.3.6"
-gem "sqlite3"
+group :production do
+  gem "pg"
+end
+group :development do
+  gem "sqlite3"
+end
 gem "bcrypt", "3.1.7"
 gem "will_paginate", "3.0.7"
 gem "carrierwave", "0.10.0"

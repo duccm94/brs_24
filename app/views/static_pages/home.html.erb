@@ -13,10 +13,9 @@
           <% elsif activity.follow? %>
             <%= link_to activity.target.name, user_path(activity.target) %>
           <% elsif activity.review? %>
-            <%= link_to activity.target.book.title, book_path(activity.target) %>
+            <%= link_to activity.target.title, book_path(activity.target) %>
           <% elsif activity.comment? %>
-            <%= link_to activity.target.review.book.title,
-              book_path(activity.target) %>
+            <%= link_to activity.target.title, book_path(activity.target) %>
           <% end %>
         </span>
         <span class="timestamp">
@@ -30,8 +29,8 @@
           <%= pluralize activity.likes.count, t("like") %>
         </div>
       </div>
+      <%= will_paginate @activities %>
     <% end %>
-    <%= will_paginate @activities %>
   </ul>
 <% else %>
   <div class="center">

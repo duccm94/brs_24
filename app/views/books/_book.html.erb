@@ -30,8 +30,8 @@
     <%= t :reviews %>
   </div>
   <div id="review">
-    <section class="review">
-      <%= render "shared/review_form", book: book %>
+    <section id="review_form">
+      <%= render "shared/review_form", book: book unless current_user.review_book? book.id %>
     </section>
     <div id="reviews_<%= book.id %>">
       <% if book.reviews.any? %>

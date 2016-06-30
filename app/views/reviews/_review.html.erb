@@ -20,7 +20,8 @@
       <div class="col-md-1">
         <%= link_to t(:delete), review, method: :delete,
           remote: true if current_user? review.user %>
-        <%= link_to t(:edit), edit_review_path(review), remote: true %>
+        <%= link_to t(:edit), edit_review_path(review),
+          remote: true if current_user? review.user %>
       </div>
     </div>
   </div>

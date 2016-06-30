@@ -58,7 +58,7 @@ class ReviewsController < ApplicationController
 
   def find_review
     @review = Review.find params[:id]
-    if @review.empty?
+    if @review.nil?
       flash.now[:danger] = t :error
       redirect_to :back
     end
